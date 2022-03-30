@@ -398,13 +398,7 @@ impl AppState {
                 let windows: id = msg_send![app, windows];
                 let window_count: usize = msg_send![windows, count];
 
-                let dialog_open = if window_count > 1 {
-                    let dialog: id = msg_send![windows, lastObject];
-                    let is_main_window: bool = msg_send![dialog, isMainWindow];
-                    msg_send![dialog, isVisible] && !is_main_window
-                } else {
-                    false
-                };
+                let dialog_open = false;
 
                 let dialog_is_closing = HANDLER.dialog_is_closing.load(Ordering::SeqCst);
                 autoreleasepool(|| {

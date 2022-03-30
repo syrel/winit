@@ -123,7 +123,7 @@ macro_rules! main_thread_check {
     ($fn_name:literal) => {{
         let thread_id = unsafe { processthreadsapi::GetCurrentThreadId() };
         if thread_id != main_thread_id() {
-            panic!(concat!(
+            info!(concat!(
                 "Initializing the event loop outside of the main thread is a significant \
                  cross-platform compatibility hazard. If you really, absolutely need to create an \
                  EventLoop on a different thread, please use the `EventLoopExtWindows::",
